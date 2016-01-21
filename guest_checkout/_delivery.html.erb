@@ -1,0 +1,27 @@
+<div class="col-md-6 col-lg-6 top-margin-30">
+  <div class="contact-panel white-bg" id="shipment_container">
+    <% if @order.shipments.blank? %>
+    <div id="empty-shipment-message">
+      <legend class="panel-header" align="left">วิธีการจัดส่ง</legend>
+      <p class="text-center">กรุณาใส่ที่อยู่ให้ครบ ก่อนเลือกวิธีการจัดส่ง</p>
+    </div>
+    <div id="loading-shipment-message" hidden>
+      <p class="text-center">กำลังค้นหาวิธีการจัดส่งสำหรับคุณ</p>
+      <div class="la-ball-fall la-dark" style="margin: auto">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <% else %>
+    <%= form.fields_for :shipments do |ship_form| %>
+    <%= render :partial => 'delivery', :locals => { :ship_form => ship_form } %>
+    <% end %>
+    <% end %>
+    <div class="row">
+      <div class="col-sm-12 form-buttons process2-actions-div hide-when-done" data-hook="buttons">
+        <%= submit_tag Spree.t(:save_and_continue), :class => 'continue button primary' %>
+      </div>
+    </div>
+  </div>
+</div>

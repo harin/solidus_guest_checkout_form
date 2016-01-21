@@ -1,0 +1,15 @@
+<% content_for :confirm_summary do %>
+  <div class="col-sm-6 top-margin-30" id="address-summary">
+    <div class="contact-panel" id="checkout-summary" data-hook="checkout_summary_box" class="columns omega four">
+        <%= render :partial => 'summary', :locals => { :order => @order } %>
+    </div>
+</div>
+<% end %>
+
+<% if @order.state == 'confirm' %>
+<div class="form-buttons process2-actions-div" data-hook="buttons">
+    <%= submit_tag Spree.t(:confirm_payment), :class => 'continue button primary' %>
+</div>
+<% end %>
+
+<div class="empty-space-78"></div>
